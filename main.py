@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time 
 
 INFO = '3644'
-PRIORITY = ['timelabel01 timeBG20', 'timelabel02 timeBG20', 'timelabel01 timeBG19', 'timelabel02 timeBG19']
+PRIORITY = ['timelabel02 timeBG18']
 
 # 로그인 화면 팝업
 URL = "https://dagympilates36.flexgym.biz/mobile/" 
@@ -39,9 +39,12 @@ while(execute == 0):
     try:
         driver.find_element(By.XPATH, f'//div[@class="{PRIORITY[0]}"]/following-sibling::div').click()
         execute = 1
-        print(f"{PRIORITY[0]}수업시간 선택")
+        print(f"{PRIORITY[0].split('BG')[1]}시 {PRIORITY[0].split()[0].split('timelabel0')[1]}번째 수업시간 선택")
+
     except:
         print("아직 시간이 아님")
         time.sleep(0.15)
 
 
+driver.find_element_by_xpath('//div[@class="AVBtn"]').click()
+print("예약 완료")
